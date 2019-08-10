@@ -19,7 +19,8 @@ using namespace std;
 #ifndef Application_H
 #define Application_H
 
-class Application {
+class Application
+{
 private:
   Menu menu;
   Event e;
@@ -28,7 +29,7 @@ private:
 public:
   Application();
   void addEvent(shared_ptr<Calendar> c);
-  void addEventDirectly(shared_ptr<Calendar> c,string fullEvent);
+  void addEventDirectly(shared_ptr<Calendar> c, string type, string date, string time, string priority, string msg);
 
   void run(shared_ptr<Calendar> &c);
   void showEvents(shared_ptr<Calendar> c);

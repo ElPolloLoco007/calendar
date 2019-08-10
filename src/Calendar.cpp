@@ -31,13 +31,17 @@ void Calendar::readFromCalendar(string tfile, shared_ptr<Event> pEvent)
           token = line.substr(0, pos);
           if (counter == 0)
           {
-            pEvent->setDate(token);
+            pEvent->setType(token);
           }
           if (counter == 1)
           {
-            pEvent->setTime(token);
+            pEvent->setDate(token);
           }
           if (counter == 2)
+          {
+            pEvent->setTime(token);
+          }
+          if (counter == 3)
           {
             pEvent->setPriority(stoi(token));
           }
@@ -47,13 +51,13 @@ void Calendar::readFromCalendar(string tfile, shared_ptr<Event> pEvent)
         pEvent->setEvent(line);
         if (pEvent->getToday() == pEvent->getDate())
         {
-          vTodayEvents.push_back(Event(pEvent->getDate(), pEvent->getTime(),
+          vTodayEvents.push_back(Event(pEvent->getType(), pEvent->getDate(), pEvent->getTime(),
                                        pEvent->getPriority(),
                                        pEvent->getEvent()));
         }
         if (pEvent->dateDifference(pEvent->getToday(), pEvent->getDate()) > 0)
         {
-          vEvents.push_back(Event(pEvent->getDate(), pEvent->getTime(),
+          vEvents.push_back(Event(pEvent->getType(), pEvent->getDate(), pEvent->getTime(),
                                   pEvent->getPriority(), pEvent->getEvent()));
         }
       }
@@ -101,62 +105,53 @@ void Calendar::printCalendar()
   system("date");
   line();
 
-  cout << left << setw(15) << "Date" << setw(9) << "Time" << setw(10)
+  cout << left << setw(11) << "Type" << setw(15) << "Date" << setw(9) << "Time" << setw(10)
        << "Priority" << setw(6) << "Event\n";
   line();
   cout << "TODAY\n";
   for (auto i : vTodayEvents)
   {
-    if (i.getPriority() == 1)
+    if (i.getType() == "General")
     {
-      cout << "\033[31m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[32m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
-    if (i.getPriority() == 2)
+    if (i.getType() == "Meeting")
     {
-      cout << "\033[33m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[33m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
-    if (i.getPriority() == 3)
+
+    if (i.getType() == "Event")
     {
-      cout << "\033[32m" << left << setw(15) << i.getDate() << setw(9)
-           << i.getTime() << setw(10) << i.getPriority() << setw(6)
-           << i.getEvent() << "\033[0m\n";
-    }
-    if (i.getPriority() == 0)
-    {
-      cout << "\033[36m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[36m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
   }
   line();
+  cout << "UPCOMING\n";
 
   for (auto i : vEvents)
   {
-    if (i.getPriority() == 1)
+    if (i.getType() == "General")
     {
-      cout << "\033[31m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[32m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
-    if (i.getPriority() == 2)
+    if (i.getType() == "Meeting")
     {
-      cout << "\033[33m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[33m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
-    if (i.getPriority() == 3)
+
+    if (i.getType() == "Event")
     {
-      cout << "\033[32m" << left << setw(15) << i.getDate() << setw(9)
-           << i.getTime() << setw(10) << i.getPriority() << setw(6)
-           << i.getEvent() << "\033[0m\n";
-    }
-    if (i.getPriority() == 0)
-    {
-      cout << "\033[36m" << left << setw(15) << i.getDate() << setw(9)
+      cout << "\033[36m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
@@ -174,27 +169,22 @@ void Calendar::printSpecificeventMsg(shared_ptr<Event> e)
        << "Priority" << setw(6) << "Event\n";
   line();
 
-  if (e->getPriority() == 1)
+  if (e->getType() == "General")
   {
-    cout << "\033[31m" << left << setw(15) << e->getDate() << setw(9)
+    cout << "\033[32m" << left << setw(11) << e->getType() << setw(15) << e->getDate() << setw(9)
          << e->getTime() << setw(10) << e->getPriority() << setw(6)
          << e->getEvent() << "\033[0m\n";
   }
-  if (e->getPriority() == 2)
+  if (e->getType() == "Meeting")
   {
-    cout << "\033[33m" << left << setw(15) << e->getDate() << setw(9)
+    cout << "\033[33m" << left << setw(11) << e->getType() << setw(15) << e->getDate() << setw(9)
          << e->getTime() << setw(10) << e->getPriority() << setw(6)
          << e->getEvent() << "\033[0m\n";
   }
-  if (e->getPriority() == 3)
+
+  if (e->getType() == "Event")
   {
-    cout << "\033[32m" << left << setw(15) << e->getDate() << setw(9)
-         << e->getTime() << setw(10) << e->getPriority() << setw(6)
-         << e->getEvent() << "\033[0m\n";
-  }
-  if (e->getPriority() == 0)
-  {
-    cout << "\033[36m" << left << setw(15) << e->getDate() << setw(9)
+    cout << "\033[36m" << left << setw(11) << e->getType() << setw(15) << e->getDate() << setw(9)
          << e->getTime() << setw(10) << e->getPriority() << setw(6)
          << e->getEvent() << "\033[0m\n";
   }
@@ -203,7 +193,7 @@ void Calendar::printSpecificeventMsg(shared_ptr<Event> e)
 }
 void Calendar::line()
 {
-  for (int i = 1; i < 35; i++)
+  for (int i = 1; i < 45; i++)
     cout << "--";
   cout << "\n";
 }

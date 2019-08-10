@@ -27,6 +27,7 @@ public:
   string validateTime(string t);
   int validatePriority(int p);
   string validateEvent(string e);
+  string validateType(string t);
 
   
 };

@@ -1,5 +1,23 @@
 #include "Validator.h"
 
+string Validator::validateType(string t)
+{
+  if (t == "General")
+  {
+    return t;
+  }
+  if (t == "Event")
+  {
+    return t;
+  }
+  if (t == "Meeting")
+  {
+    return t;
+  }
+  cout << "Please enter a valid type: General, Meeting or Event";
+  return "";
+}
+
 string Validator::validateDate(string d)
 {
   string ye, mo, da;
@@ -85,7 +103,7 @@ string Validator::validateTime(string t)
 
   if (t.length() == 5)
   {
-    tmp.replace(2, 1, 1, '-');
+    tmp.replace(2, 1, 1, ':');
     ho = t.substr(0, 2);
     mi = t.substr(3, 5);
 
@@ -99,7 +117,7 @@ string Validator::validateTime(string t)
       }
     }
   }
-  cout << "Please enter a valid time 16-24!";
+  cout << "Please enter a valid time 16:24!";
   return "";
 }
 int Validator::validatePriority(int p)

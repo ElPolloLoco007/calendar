@@ -14,74 +14,73 @@ void Application::help()
 {
   cout << "Welcome to calendar terminal\n";
   cout << "To get to the menu simply type calendar --menu\n";
-  cout << "To instant add Event: ./main 12-08-2021-12-08-2-blablabla";
+  cout << "To instant add Event: ./main general 12-08-2021 12-08 2 this is a event";
 }
 
-void Application::addEventDirectly(shared_ptr<Calendar> c, string fullEvent)
+void Application::addEventDirectly(shared_ptr<Calendar> c, string type, string date, string time, string priority, string msg)
 {
   shared_ptr<Event> e(new Event());
-  string vDate, vTime, vEvent;
+  string vType, vDate, vTime, vMsg;
   int vPriority;
   int iPriority;
 
-  if (fullEvent.length() > 20)
+  vType = v.validateType(type);
+  while (vType == "")
   {
-    string date = fullEvent.substr(0, 10);
-    string time = fullEvent.substr(11, 5);
-    string priority = fullEvent.substr(17, 1);
-    string msg = fullEvent.substr(19);
-
-    //------------------------------
-    vDate = v.validateDate(date);
-    while (vDate == "")
-    {
-      cout << "\nDate:";
-      getline(cin, date);
-      vDate = v.validateDate(date);
-    }
-    e->setDate(vDate);
-
-    //------------------------------
-
-    vTime = v.validateTime(time);
-    while (vTime == "")
-    {
-      cout << "\nTime:";
-      getline(cin, time);
-      vTime = v.validateTime(time);
-    }
-    e->setTime(vTime);
-
-    //------------------------------
-    while (!e->isNumber(priority))
-    {
-      cin.clear();
-      cin.ignore(999, '\n');
-      cout << "Invalid data type! Please enter 'i' again";
-      cout << "\nPriority:";
-      cin >> priority;
-    }
-    iPriority = stoi(priority);
-
-    vPriority = v.validatePriority(iPriority);
-    e->setPriority(vPriority);
-
-    //------------------------------
-
-    vEvent = v.validateEvent(msg);
-    while (vEvent == "")
-    {
-      cout << "\nEvent:";
-      getline(cin, msg);
-      vEvent = v.validateEvent(msg);
-    }
-    e->setEvent(vEvent);
-    //------------------------------
-
-    c->addCalendareventMsg(e);
-    c->printSpecificeventMsg(e);
-    cout << "\n";
+    cout << "\nType:";
+    getline(cin, type);
+    vType = v.validateType(type);
   }
+  e->setDate(vDate);
+  //------------------------------
+  vDate = v.validateDate(date);
+  while (vDate == "")
+  {
+    cout << "\nDate:";
+    getline(cin, date);
+    vDate = v.validateDate(date);
+  }
+  e->setDate(vDate);
+  //------------------------------
+
+  vTime = v.validateTime(time);
+  while (vTime == "")
+  {
+    cout << "\nTime:";
+    getline(cin, time);
+    vTime = v.validateTime(time);
+  }
+  e->setTime(vTime);
+
+  //------------------------------
+  while (!e->isNumber(priority))
+  {
+    cin.clear();
+    cin.ignore(999, '\n');
+    cout << "Invalid data type! Please enter 'i' again";
+    cout << "\nPriority:";
+    cin >> priority;
+  }
+  iPriority = stoi(priority);
+
+  vPriority = v.validatePriority(iPriority);
+  e->setPriority(vPriority);
+
+  //------------------------------
+
+  vMsg = v.validateEvent(msg);
+  while (vMsg == "")
+  {
+    cout << "\nEvent:";
+    getline(cin, msg);
+    vMsg = v.validateEvent(msg);
+  }
+  e->setEvent(vMsg);
+  //------------------------------
+
+  c->addCalendareventMsg(e);
+  c->printSpecificeventMsg(e);
+  cout << "\n";
 }
 
 void Application::addEvent(shared_ptr<Calendar> c)
@@ -89,12 +88,31 @@ void Application::addEvent(shared_ptr<Calendar> c)
 
   cin.ignore();
   shared_ptr<Event> e(new Event());
-  string date, time, event;
+  string type, date, time, event;
+  string vType = "";
   int priority;
   string vDate = "";
   string vTime = "";
   int vPriority = 0;
   string vMsg = "";
+  //------------------------------
+  cout << "Type:";
+  getline(cin, type);
+  if (type.length() > 0)
+  {
+    type[0] = toupper(type[0]);
+  }
+
+  vType = v.validateType(type);
+  while (vType == "")
+  {
+    cout << "\nDate:";
+    getline(cin, vType);
+    vType = v.validateType(type);
+  }
+  vType[0] = toupper(vType[0]);
+  e->setDate(vType);
+
   //------------------------------
   cout << "Date:";
   getline(cin, date);
