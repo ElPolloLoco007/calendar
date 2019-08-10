@@ -106,7 +106,7 @@ void Calendar::printCalendar()
   line();
 
   cout << left << setw(11) << "Type" << setw(15) << "Date" << setw(9) << "Time" << setw(10)
-       << "Priority" << setw(6) << "Event\n";
+       << "Priority" << setw(6) << "Message\n";
   line();
   cout << "TODAY\n";
   for (auto i : vTodayEvents)
@@ -166,7 +166,7 @@ void Calendar::printSpecificeventMsg(shared_ptr<Event> e)
   cout << "\nEvent added\n";
   line();
   cout << left << setw(15) << "Date" << setw(9) << "Time" << setw(10)
-       << "Priority" << setw(6) << "Event\n";
+       << "Priority" << setw(6) << "Message\n";
   line();
 
   if (e->getType() == "General")
