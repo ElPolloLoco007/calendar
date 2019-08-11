@@ -14,7 +14,10 @@ void Application::help()
 {
   cout << "Welcome to calendar terminal\n";
   cout << "To get to the menu simply type calendar --menu\n";
-  cout << "To instant add Event: ./main general 12-08-2021 12-08 2 this is a event";
+  cout << "To instant add Event: ./calendar type,date,time,priority,msg:\n";
+  cout << "To instant add Event: ./main general 12-08-2021 12-08 2 this is a event\n";
+  cout << "It is also possible to ignore the type date and clock like:\n";
+  cout << "The output will be General-todays date- noclock\n\n";
 }
 
 void Application::addEventDirectly(shared_ptr<Calendar> c, string type, string date, string time, string priority, string msg)
