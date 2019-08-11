@@ -22,8 +22,7 @@ int main(int argc, char **argv)
   string date = e.getToday();
   string time = "     ";
   string msg = "";
-  int priority = 0;
-  string sPriority;
+  string priority = "0";
 
   for (int i = 0; i < argc; i++)
   {
@@ -37,8 +36,12 @@ int main(int argc, char **argv)
     }
     if (i == 1)
     {
+
       string tmp = argv[i];
-      tmp[0] = toupper(tmp[0]);
+      if (tmp.length() > 1)
+      {
+        tmp[0] = toupper(tmp[0]);
+      }
       if (tmp == "General" || tmp == "Event" || tmp == "Meeting")
       {
         type = tmp;
@@ -53,8 +56,7 @@ int main(int argc, char **argv)
       }
       else if (tmp.length() == 1)
       {
-        priority = stoi(tmp);
-        sPriority = to_string(priority);
+        priority = tmp;
       }
       else
       {
@@ -76,8 +78,7 @@ int main(int argc, char **argv)
       }
       else if (tmp.length() == 1)
       {
-        priority = stoi(tmp);
-        sPriority = to_string(priority);
+        priority = tmp;
       }
       else
       {
@@ -95,8 +96,7 @@ int main(int argc, char **argv)
       }
       else if (tmp.length() == 1)
       {
-        priority = stoi(tmp);
-        sPriority = to_string(priority);
+        priority = tmp;
       }
       else
       {
@@ -110,8 +110,7 @@ int main(int argc, char **argv)
       string tmp = argv[i];
       if (tmp.length() == 1)
       {
-        priority = stoi(tmp);
-        sPriority = to_string(priority);
+        priority = tmp;
       }
       else
       {
@@ -126,9 +125,9 @@ int main(int argc, char **argv)
       msg += " ";
     }
   }
-  if (argc > 1)
+  if (argc > 2)
   {
-    a->addEventDirectly(c, type, date, time, sPriority, msg);
+    a->addEventDirectly(c, type, date, time, priority, msg);
   }
 
   a->showEvents(c);
