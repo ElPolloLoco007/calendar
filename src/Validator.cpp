@@ -107,6 +107,10 @@ string Validator::validateTime(string t)
     ho = t.substr(0, 2);
     mi = t.substr(3, 5);
 
+    if(t == "     "){
+      return t;
+    }
+
     if (event.isNumber(ho) && event.isNumber(mi))
     {
       h1 = stoi(ho);

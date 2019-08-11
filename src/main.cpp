@@ -23,6 +23,7 @@ int main(int argc, char **argv)
   string time = "     ";
   string msg = "";
   int priority = 0;
+  string sPriority;
 
   for (int i = 0; i < argc; i++)
   {
@@ -46,13 +47,14 @@ int main(int argc, char **argv)
       {
         date = tmp;
       }
-      else if (tmp.length() == 5)
+      else if (tmp.length() == 5 && tmp != "Event")
       {
         time = tmp;
       }
       else if (tmp.length() == 1)
       {
         priority = stoi(tmp);
+        sPriority = to_string(priority);
       }
       else
       {
@@ -68,13 +70,14 @@ int main(int argc, char **argv)
       {
         date = tmp;
       }
-      if (tmp.length() == 5)
+      else if (tmp.length() == 5)
       {
         time = tmp;
       }
-      if (tmp.length() == 1)
+      else if (tmp.length() == 1)
       {
         priority = stoi(tmp);
+        sPriority = to_string(priority);
       }
       else
       {
@@ -93,6 +96,7 @@ int main(int argc, char **argv)
       else if (tmp.length() == 1)
       {
         priority = stoi(tmp);
+        sPriority = to_string(priority);
       }
       else
       {
@@ -107,6 +111,7 @@ int main(int argc, char **argv)
       if (tmp.length() == 1)
       {
         priority = stoi(tmp);
+        sPriority = to_string(priority);
       }
       else
       {
@@ -123,7 +128,6 @@ int main(int argc, char **argv)
   }
   if (argc > 1)
   {
-    string sPriority = to_string(priority);
     a->addEventDirectly(c, type, date, time, sPriority, msg);
   }
 

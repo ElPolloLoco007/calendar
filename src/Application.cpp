@@ -31,7 +31,9 @@ void Application::addEventDirectly(shared_ptr<Calendar> c, string type, string d
     getline(cin, type);
     vType = v.validateType(type);
   }
-  e->setDate(vDate);
+  cout << vType;
+
+  e->setType(vType);
   //------------------------------
   vDate = v.validateDate(date);
   while (vDate == "")
@@ -111,7 +113,7 @@ void Application::addEvent(shared_ptr<Calendar> c)
     vType = v.validateType(type);
   }
   vType[0] = toupper(vType[0]);
-  e->setDate(vType);
+  e->setType(vType);
 
   //------------------------------
   cout << "Date:";

@@ -6,7 +6,7 @@ void Calendar::writeToCalendar(string tfile, shared_ptr<Event> pEvent)
   string homepath = getenv("HOME");
   ofstream out;
   out.open(homepath + "/Dropbox/Calendar/" + tfile, std::ios_base::app);
-  out << pEvent->getDate() << "?" << pEvent->getTime() << "?"
+  out << pEvent->getType()<<"?" << pEvent->getDate() << "?" << pEvent->getTime() << "?"
       << pEvent->getPriority() << "?" << pEvent->getEvent() << "\n";
   out.close();
 }
@@ -165,7 +165,7 @@ void Calendar::printSpecificeventMsg(shared_ptr<Event> e)
 {
   cout << "\nEvent added\n";
   line();
-  cout << left << setw(15) << "Date" << setw(9) << "Time" << setw(10)
+  cout << left << setw(11) << "Type" << setw(15) << "Date" << setw(9) << "Time" << setw(10)
        << "Priority" << setw(6) << "Message\n";
   line();
 
