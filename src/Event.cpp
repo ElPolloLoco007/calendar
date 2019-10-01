@@ -1,6 +1,7 @@
 #include "Event.h"
 
-void Event::getTimeNow() {
+void Event::getTimeNow()
+{
   std::time_t t = std::time(0); // get time now
   std::tm *now = std::localtime(&t);
   // std::cout << (now->tm_year + 1900) << '-' << (now->tm_mon + 1) << '-'
@@ -9,21 +10,26 @@ void Event::getTimeNow() {
   year = to_string(now->tm_year + 1900);
   setYear(year);
 
-  if (now->tm_mon < 10) {
+  if (now->tm_mon < 9)
+  {
     month = "0";
     month += to_string(now->tm_mon + 1);
     setMonth(month);
-
-  } else {
+  }
+  else
+  {
     month = to_string(now->tm_mon + 1);
     setMonth(month);
   }
 
-  if (now->tm_mday < 10) {
+  if (now->tm_mday < 10)
+  {
     day = "0";
     day += to_string(now->tm_mday);
     setDay(day);
-  } else {
+  }
+  else
+  {
     day = to_string(now->tm_mday);
     setDay(day);
   }
@@ -36,7 +42,8 @@ void Event::getTimeNow() {
   setToday(today);
 }
 
-bool Event::isNumber(string s) {
+bool Event::isNumber(string s)
+{
   for (int i = 0; i < s.length(); i++)
     if (isdigit(s[i]) == false)
       return false;
@@ -44,13 +51,15 @@ bool Event::isNumber(string s) {
   return true;
 }
 
-int Event::rdn(int y, int m, int d) {
+int Event::rdn(int y, int m, int d)
+{
   if (m < 3)
     y--, m += 12;
   return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
 
-int Event::dateDifference(string pToday, string pFuture) {
+int Event::dateDifference(string pToday, string pFuture)
+{
   string y1, m1, d1, y2, m2, d2;
   int ye1, mo1, da1, ye2, mo2, da2;
   d1 = pToday.substr(0, 2);
@@ -75,7 +84,8 @@ int Event::dateDifference(string pToday, string pFuture) {
   return days;
 }
 
-int Event::timeDifference(string clock, string race) {
+int Event::timeDifference(string clock, string race)
+{
   string h, m, h1, m1;
   int hour, min, hour1, min1;
   h = clock.substr(0, 2);
