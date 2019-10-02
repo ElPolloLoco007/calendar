@@ -6,7 +6,7 @@ void Calendar::writeToCalendar(string tfile, shared_ptr<Event> pEvent)
   string homepath = getenv("HOME");
   ofstream out;
   out.open(homepath + "/Dropbox/Calendar/" + tfile, std::ios_base::app);
-  out << pEvent->getType()<<"?" << pEvent->getDate() << "?" << pEvent->getTime() << "?"
+  out << pEvent->getType() << "?" << pEvent->getDate() << "?" << pEvent->getTime() << "?"
       << pEvent->getPriority() << "?" << pEvent->getEvent() << "\n";
   out.close();
 }
@@ -55,7 +55,7 @@ void Calendar::readFromCalendar(string tfile, shared_ptr<Event> pEvent)
                                        pEvent->getPriority(),
                                        pEvent->getEvent()));
         }
-        if (pEvent->dateDifference(pEvent->getToday(), pEvent->getDate()) > 0)
+        else if (pEvent->dateDifference(pEvent->getToday(), pEvent->getDate()) > 0)
         {
           vEvents.push_back(Event(pEvent->getType(), pEvent->getDate(), pEvent->getTime(),
                                   pEvent->getPriority(), pEvent->getEvent()));
