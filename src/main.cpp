@@ -10,6 +10,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+  system("cal -3");
   Event e;
   e.getTimeNow();
   //Bash to remove empty lines in txt file
