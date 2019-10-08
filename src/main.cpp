@@ -128,9 +128,8 @@ int main(int argc, char **argv)
   }
   if (argc > 2)
   {
-    a->addEventDirectly(c, type, date, time, priority, msg);
+    a->addEventDirectly(c,type, date, time, priority, msg);
   }
-
   a->showEvents(c);
 
   return 0;
