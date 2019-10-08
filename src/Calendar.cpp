@@ -102,7 +102,6 @@ void Calendar::printCalendar()
   sortByDate(vTodayEvents);
   sortByDate(vEvents);
 
-  system("date");
   line();
 
   cout << left << setw(11) << "Type" << setw(15) << "Date" << setw(9) << "Time" << setw(10)
