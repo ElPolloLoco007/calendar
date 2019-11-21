@@ -151,6 +151,12 @@ void Calendar::printCalendar()
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }
+    if (i.getType() == "Work")
+    {
+      cout << "\033[34m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
+           << i.getTime() << setw(10) << i.getPriority() << setw(6)
+           << i.getEvent() << "\033[0m\n";
+    }
   }
   line();
   cout << "UPCOMING\n";
@@ -173,6 +179,13 @@ void Calendar::printCalendar()
     if (i.getType() == "Event")
     {
       cout << "\033[36m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
+           << i.getTime() << setw(10) << i.getPriority() << setw(6)
+           << i.getEvent() << "\033[0m\n";
+    }
+
+    if (i.getType() == "Work")
+    {
+      cout << "\033[34m" << left << setw(11) << i.getType() << setw(15) << i.getDate() << setw(9)
            << i.getTime() << setw(10) << i.getPriority() << setw(6)
            << i.getEvent() << "\033[0m\n";
     }

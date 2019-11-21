@@ -14,6 +14,10 @@ string Validator::validateType(string t)
   {
     return t;
   }
+  if (t == "Work")
+  {
+    return t;
+  }
   cout << "Please enter a valid type: General, Meeting or Event";
   return "";
 }
@@ -107,7 +111,8 @@ string Validator::validateTime(string t)
     ho = t.substr(0, 2);
     mi = t.substr(3, 5);
 
-    if(t == "     "){
+    if (t == "     ")
+    {
       return t;
     }
 

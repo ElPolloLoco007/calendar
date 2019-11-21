@@ -43,7 +43,7 @@ int main(int argc, char **argv)
       {
         tmp[0] = toupper(tmp[0]);
       }
-      if (tmp == "General" || tmp == "Event" || tmp == "Meeting")
+      if (tmp == "General" || tmp == "Event" || tmp == "Meeting" || tmp == "Work")
       {
         type = tmp;
       }
@@ -130,7 +130,6 @@ int main(int argc, char **argv)
   {
     a->addEventDirectly(c, type, date, time, priority, msg);
   }
-
   a->showEvents(c);
 
   return 0;

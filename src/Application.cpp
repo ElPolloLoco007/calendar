@@ -34,8 +34,6 @@ void Application::addEventDirectly(shared_ptr<Calendar> c, string type, string d
     getline(cin, type);
     vType = v.validateType(type);
   }
-  cout << vType;
-
   e->setType(vType);
   //------------------------------
   vDate = v.validateDate(date);
