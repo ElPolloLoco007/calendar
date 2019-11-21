@@ -30,16 +30,15 @@ public:
   ~Calendar(){};
 
   void line();
-      void printCalendar();
+  void printCalendar();
   void printSpecificeventMsg(shared_ptr<Event> e);
   void readFromCalendar(string tfile, shared_ptr<Event> pEvent);
   void writeToCalendar(string tfile, shared_ptr<Event> pEvent);
   void deleteOldEvents(string tfile, shared_ptr<Event> pEvent);
 
-
   void addCalendareventMsg(shared_ptr<Event> e);
 
-  void sortByDate(vector<Event> e);
-
+  void sortByDate();
+  void sortByDateToday();
 };
 #endif

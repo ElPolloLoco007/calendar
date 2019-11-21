@@ -75,9 +75,9 @@ void Calendar::readFromCalendar(string tfile, shared_ptr<Event> pEvent)
   }
 }
 
-void Calendar::sortByDate(vector<Event> e)
+void Calendar::sortByDate()
 {
-  sort(e.begin(), e.end(), [](Event a, Event b) -> bool {
+  sort(vEvents.begin(), vEvents.end(), [](Event a, Event b) -> bool {
     if (a.getDate().substr(6, 4) < b.getDate().substr(6, 4))
       return true;
     if (a.getDate().substr(6, 4) == b.getDate().substr(6, 4) &&
@@ -92,15 +92,37 @@ void Calendar::sortByDate(vector<Event> e)
         a.getDate().substr(0, 2) == b.getDate().substr(0, 2) &&
         a.getPriority() < b.getPriority())
       return true;
-
     return false;
   });
 }
+
+
+void Calendar::sortByDateToday()
+{
+  sort(vEvents.begin(), vEvents.end(), [](Event a, Event b) -> bool {
+    if (a.getDate().substr(6, 4) < b.getDate().substr(6, 4))
+      return true;
+    if (a.getDate().substr(6, 4) == b.getDate().substr(6, 4) &&
+        a.getDate().substr(3, 2) < b.getDate().substr(3, 2))
+      return true;
+    if (a.getDate().substr(6, 4) == b.getDate().substr(6, 4) &&
+        a.getDate().substr(3, 2) == b.getDate().substr(3, 2) &&
+        a.getDate().substr(0, 2) < b.getDate().substr(0, 2))
+      return true;
+    if (a.getDate().substr(6, 4) == b.getDate().substr(6, 4) &&
+        a.getDate().substr(3, 2) == b.getDate().substr(3, 2) &&
+        a.getDate().substr(0, 2) == b.getDate().substr(0, 2) &&
+        a.getPriority() < b.getPriority())
+      return true;
+    return false;
+  });
+}
+
 void Calendar::printCalendar()
 {
 
-  sortByDate(vTodayEvents);
-  sortByDate(vEvents);
+  sortByDate();
+  sortByDateToday();
 
   line();
 
