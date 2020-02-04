@@ -227,7 +227,7 @@ void Calendar::printSpecificeventMsg(shared_ptr<Event> e)
 }
 void Calendar::line()
 {
-  for (int i = 1; i < 45; i++)
+  for (int i = 1; i < 47; i++)
     cout << "--";
   cout << "\n";
 }
