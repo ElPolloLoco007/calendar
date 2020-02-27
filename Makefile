@@ -5,6 +5,8 @@ BIN		:= bin
 SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
+EXTRA		:= extra
+
 
 LIBRARIES	:=
 EXECUTABLE	:= calendar
@@ -21,6 +23,3 @@ $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 
 clean:
 	-rm $(BIN)/*
-
-
-
