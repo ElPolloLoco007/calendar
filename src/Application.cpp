@@ -169,11 +169,13 @@ void Application::addEvent(shared_ptr<Calendar> c)
   c->printSpecificeventMsg(e);
   cout << "\n";
 }
+
 void Application::updateDeleteEvent(shared_ptr<Calendar> &c)
 {
-  system("gedit ~/Dropbox/Calendar/calendar");
+  system("gedit ~/.calendar");
   clearScreen();
 }
+
 void Application::showEvents(shared_ptr<Calendar> c)
 {
   shared_ptr<Event> e(new Event());

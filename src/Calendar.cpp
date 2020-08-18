@@ -5,17 +5,18 @@ void Calendar::writeToCalendar(string tfile, shared_ptr<Event> pEvent)
 
   string homepath = getenv("HOME");
   ofstream out;
-  out.open(homepath + "/Dropbox/Calendar/" + tfile, std::ios_base::app);
+  out.open(homepath + "/" + tfile, std::ios_base::app);
   out << pEvent->getType() << "?" << pEvent->getDate() << "?" << pEvent->getTime() << "?"
       << pEvent->getPriority() << "?" << pEvent->getEvent() << "\n";
   out.close();
+  //Add sql here
 }
 
 void Calendar::readFromCalendar(string tfile, shared_ptr<Event> pEvent)
 {
   pEvent->getTimeNow();
   string homepath = getenv("HOME");
-  ifstream in(homepath + "/Dropbox/Calendar/" + tfile);
+  ifstream in(homepath + "/" + tfile);
   if (in.is_open(), ios::in)
   {
     for (std::string line; std::getline(in, line);)
@@ -235,5 +236,5 @@ void Calendar::line()
 void Calendar::addCalendareventMsg(shared_ptr<Event> e)
 {
 
-  writeToCalendar("calendar", e);
+  writeToCalendar(".calendar", e);
 }
