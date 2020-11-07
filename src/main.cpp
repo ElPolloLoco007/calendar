@@ -44,9 +44,16 @@ int main(int argc, char **argv)
     {
       a->help();
     }
+    else if(strcmp(argv[i], "--waitForCommand") == 0){
+      //Added since when executed in st, terminal gets closed after finishing loading
+      //st terminal from dwm
+        a->showEvents(c);
+      string dummy;
+      cout << "Enter to close..." << std::endl;
+      getline(std::cin, dummy);
+    }
     if (i == 1)
     {
-
       string tmp = argv[i];
       if (tmp.length() > 1)
       {
@@ -141,10 +148,5 @@ int main(int argc, char **argv)
     a->addEventDirectly(c, type, date, time, priority, msg);
   }
   a->showEvents(c);
-  //Added since when executed in st, terminal gets closed after finishing loading
-  //st terminal from dwm
-  string dummy;
-  cout << "Enter to continue..." << std::endl;
-  getline(std::cin, dummy);
   return 0;
 }
